@@ -1,91 +1,304 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NodeEarn - Solusi Penghasilan Digital</title>
+    <title>NodeEarn - Platform Penghasilan Digital Terpercaya</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .btn-primary { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); transition: all 0.3s ease; }
-        .modal { transition: opacity 0.25s ease; }
-        body.modal-active { overflow: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226, 232, 240, 0.8); }
+        .hero-blob { 
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(255,255,255,0) 70%);
+            position: absolute; top: -10%; right: -10%; width: 50%; height: 50%; z-index: -1;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4); }
+        .feature-card:hover { transform: translateY(-5px); border-color: #bfdbfe; }
     </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-900">
+<body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="bg-blue-600 p-1.5 rounded-lg text-white"><i class="fas fa-network-wired"></i></div>
-                <h1 class="text-2xl font-extrabold tracking-tight">Node<span class="text-blue-600">Earn</span></h1>
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <div class="bg-blue-600 w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                        <i class="fas fa-cube text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight text-slate-900">Node<span class="text-blue-600">Earn</span></span>
+                </div>
+
+                <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-500">
+                    <a href="#fitur" class="hover:text-blue-600 transition-colors">Fitur Utama</a>
+                    <a href="#cara-kerja" class="hover:text-blue-600 transition-colors">Cara Kerja</a>
+                    <a href="#testimoni" class="hover:text-blue-600 transition-colors">Testimoni</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button onclick="openModal('login')" class="hidden md:block text-sm font-bold text-slate-600 hover:text-blue-600">Masuk</button>
+                    <button onclick="openModal('signup')" class="btn-gradient text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md">Mulai Gratis</button>
+                </div>
             </div>
-            <button onclick="toggleModal('signup')" class="btn-primary text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-500/20">Mulai Gratis</button>
         </div>
     </nav>
 
-    <header class="pt-48 pb-24 px-6 text-center">
-        <h2 class="text-5xl md:text-7xl font-extrabold text-slate-900 mx-auto max-w-4xl leading-tight">
-            Kerja <span class="text-blue-600">Smart</span>, Bukan Hard.
-        </h2>
-        <p class="text-slate-500 mt-6 text-lg max-w-2xl mx-auto">Platform penghasil saldo digital berbasis web tercepat tanpa instalasi aplikasi.</p>
-        <button onclick="toggleModal('signup')" class="mt-10 btn-primary text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl">Gabung Sekarang</button>
-    </header>
-
-    <div id="authModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-[100]">
-        <div class="absolute w-full h-full bg-slate-900/60 backdrop-blur-sm" onclick="toggleModal()"></div>
-        
-        <div class="bg-white w-11/12 md:max-w-md mx-auto rounded-[2.5rem] shadow-2xl z-[101] overflow-hidden relative">
-            <div class="p-10">
-                <div class="flex justify-between items-center mb-8">
-                    <p class="text-2xl font-black text-slate-900" id="modalTitle">Daftar Akun</p>
-                    <i class="fas fa-times text-slate-300 hover:text-slate-900 cursor-pointer transition" onclick="toggleModal()"></i>
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 overflow-hidden">
+        <div class="hero-blob"></div>
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 px-4 py-2 rounded-full mb-6">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wide">Platform #1 Tanpa Deposit</span>
                 </div>
-
-                <form id="authForm" class="space-y-4">
-                    <input type="email" id="email" placeholder="Email Anda" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
-                    <input type="password" id="password" placeholder="Password" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
-                    <button type="submit" class="btn-primary w-full text-white py-4 rounded-2xl font-bold text-lg shadow-lg">Lanjutkan</button>
-                </form>
-
-                <div class="relative flex py-8 items-center">
-                    <div class="flex-grow border-t border-slate-100"></div>
-                    <span class="flex-shrink mx-4 text-slate-400 text-[10px] font-bold uppercase tracking-widest">Atau Gunakan</span>
-                    <div class="flex-grow border-t border-slate-100"></div>
-                </div>
-
-                <button id="googleBtn" class="w-full flex items-center justify-center space-x-3 border border-slate-200 py-4 rounded-2xl hover:bg-slate-50 transition font-bold text-slate-700">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-6 h-6" alt="Google">
-                    <span>Login dengan Google</span>
-                </button>
-                
-                <p class="mt-8 text-center text-sm text-slate-500" id="modalFooter">
-                    Sudah punya akun? <a href="#" onclick="toggleModal('login')" class="text-blue-600 font-bold">Masuk</a>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-6">
+                    Ubah Waktu Luang Jadi <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Cuan Digital.</span>
+                </h1>
+                <p class="text-lg text-slate-500 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    Selesaikan misi ringan, tonton video, atau isi survei. Kumpulkan saldo dan cairkan ke DANA, GoPay, atau OVO dalam hitungan detik.
                 </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <button onclick="openModal('signup')" class="btn-gradient text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-blue-500/20">
+                        Daftar Sekarang
+                    </button>
+                    <button class="px-8 py-4 rounded-2xl font-bold text-lg text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-sm">
+                        <i class="fas fa-play-circle mr-2 text-blue-500"></i> Lihat Video
+                    </button>
+                </div>
+                
+                <div class="mt-10 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+                    <div class="flex -space-x-3">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/86.jpg" alt="User">
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-600">+2k</div>
+                    </div>
+                    <div class="text-sm">
+                        <p class="font-bold text-slate-900">2,500+ Pengguna Aktif</p>
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block">
+                <div class="bg-white p-6 rounded-[2.5rem] shadow-2xl border border-slate-100 relative z-10 transform rotate-[-2deg] hover:rotate-0 transition duration-500">
+                    <div class="bg-slate-900 rounded-[2rem] p-6 text-white overflow-hidden relative">
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500 rounded-full opacity-20 blur-2xl"></div>
+                        
+                        <div class="flex justify-between items-start mb-8">
+                            <div>
+                                <p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Total Saldo</p>
+                                <h3 class="text-3xl font-bold mt-1">Rp 1.450.000</h3>
+                            </div>
+                            <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm">
+                                <i class="fas fa-wallet text-xl"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-end gap-2 h-24 mb-6">
+                            <div class="w-full bg-blue-500/20 rounded-t-lg h-[40%]"></div>
+                            <div class="w-full bg-blue-500/20 rounded-t-lg h-[60%]"></div>
+                            <div class="w-full bg-blue-500/40 rounded-t-lg h-[50%]"></div>
+                            <div class="w-full bg-blue-500/30 rounded-t-lg h-[70%]"></div>
+                            <div class="w-full bg-blue-500 rounded-t-lg h-[90%] relative group">
+                                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-slate-900 text-[10px] font-bold py-1 px-2 rounded shadow opacity-0 group-hover:opacity-100 transition">+150K</div>
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold text-sm transition">Tarik Saldo Sekarang</button>
+                    </div>
+                    
+                    <div class="absolute -right-8 top-1/2 bg-white p-4 rounded-2xl shadow-xl border border-slate-50 flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+                        <div class="bg-green-100 p-2 rounded-full text-green-600"><i class="fas fa-check"></i></div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-800">Dana Masuk</p>
+                            <p class="text-[10px] text-slate-500">Rp 50.000 dari Misi Harian</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <section class="bg-white py-10 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="p-4">
+                <h3 class="text-3xl font-black text-slate-900">50rb+</h3>
+                <p class="text-sm font-semibold text-slate-400 uppercase mt-1">Total Misi</p>
+            </div>
+            <div class="p-4">
+                <h3 class="text-3xl font-black text-blue-600">IDR 2M+</h3>
+                <p class="text-sm font-semibold text-slate-400 uppercase mt-1">Uang Dicairkan</p>
+            </div>
+            <div class="p-4">
+                <h3 class="text-3xl font-black text-slate-900">0.5 Detik</h3>
+                <p class="text-sm font-semibold text-slate-400 uppercase mt-1">Kecepatan Server</p>
+            </div>
+            <div class="p-4">
+                <h3 class="text-3xl font-black text-slate-900">24/7</h3>
+                <p class="text-sm font-semibold text-slate-400 uppercase mt-1">Support Live</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cara-kerja" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">Cara Kerja <span class="text-blue-600">Sangat Simpel</span></h2>
+                <p class="text-slate-500 mt-4">Tidak perlu skill coding atau desain. Cukup HP dan Internet.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-xl font-bold mb-6">1</div>
+                    <h4 class="text-xl font-bold mb-3">Daftar Akun Gratis</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Cukup gunakan akun Google atau Email. Tidak ada biaya pendaftaran sepeserpun.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-xl font-bold mb-6">2</div>
+                    <h4 class="text-xl font-bold mb-3">Selesaikan Misi</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Pilih misi yang kamu suka: Nonton video, install aplikasi ringan, atau isi kuesioner.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-xl font-bold mb-6">3</div>
+                    <h4 class="text-xl font-bold mb-3">Tarik Tunai</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Saldo terkumpul? Langsung transfer ke E-Wallet favoritmu tanpa potongan admin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="modalBackdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[99] hidden transition-opacity opacity-0" onclick="closeModal()"></div>
+    
+    <div id="authModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-[2rem] shadow-2xl z-[100] hidden transition-all scale-95 opacity-0 p-8 border border-slate-100">
+        
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h3 id="modalTitle" class="text-2xl font-extrabold text-slate-900">Selamat Datang</h3>
+                <p class="text-sm text-slate-500">Silakan masukkan detail akun Anda</p>
+            </div>
+            <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition">
+                <i class="fas fa-times text-slate-600"></i>
+            </button>
+        </div>
+
+        <form class="space-y-5">
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-2 ml-1">Email Address</label>
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-4 top-4 text-slate-400"></i>
+                    <input type="email" placeholder="contoh@email.com" class="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition font-medium text-slate-700">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-2 ml-1">Password</label>
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-4 text-slate-400"></i>
+                    <input type="password" placeholder="••••••••" class="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition font-medium text-slate-700">
+                </div>
+            </div>
+            
+            <button type="button" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1">
+                Lanjutkan dengan Email
+            </button>
+        </form>
+
+        <div class="relative flex py-8 items-center">
+            <div class="flex-grow border-t border-slate-200"></div>
+            <span class="flex-shrink mx-4 text-slate-400 text-[10px] font-bold uppercase tracking-widest">Alternatif</span>
+            <div class="flex-grow border-t border-slate-200"></div>
+        </div>
+
+        <button class="w-full flex items-center justify-center gap-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold py-3.5 rounded-xl transition group">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5 group-hover:scale-110 transition">
+            <span>Masuk dengan Google</span>
+        </button>
+
+        <p class="text-center mt-8 text-sm text-slate-500">
+            Belum punya akun? <a href="#" class="text-blue-600 font-bold hover:underline">Daftar Gratis</a>
+        </p>
     </div>
 
-    <script type="module" src="auth.js"></script>
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Node<span class="text-blue-600">Earn</span></h2>
+                    <p class="text-slate-500 text-sm leading-relaxed max-w-sm mx-auto md:mx-0">
+                        Platform web-based nomor 1 di Indonesia untuk menghasilkan uang tambahan tanpa perlu skill teknis. Aman, Cepat, dan Terpercaya.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-4">Tautan</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-blue-600">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Cara Kerja</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Karir</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-blue-600">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-100 pt-8 text-center">
+                <p class="text-slate-400 text-xs">© 2026 NodeEarn Inc. Dibuat dengan ❤️ untuk pejuang rupiah.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        function toggleModal(mode = 'signup') {
-            const modal = document.getElementById('authModal');
-            const title = document.getElementById('modalTitle');
-            const footer = document.getElementById('modalFooter');
-            
-            if(mode === 'login') {
-                title.innerText = "Masuk Kembali";
-                footer.innerHTML = 'Belum punya akun? <a href="#" onclick="toggleModal(\'signup\')" class="text-blue-600 font-bold">Daftar</a>';
+        const modal = document.getElementById('authModal');
+        const backdrop = document.getElementById('modalBackdrop');
+        const modalTitle = document.getElementById('modalTitle');
+
+        function openModal(type) {
+            // Show Backdrop
+            backdrop.classList.remove('hidden');
+            setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+
+            // Show Modal
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('scale-95', 'opacity-0');
+                modal.classList.add('scale-100', 'opacity-100');
+            }, 50);
+
+            // Set Title based on Type
+            if (type === 'signup') {
+                modalTitle.innerText = "Buat Akun Baru";
             } else {
-                title.innerText = "Daftar Akun";
-                footer.innerHTML = 'Sudah punya akun? <a href="#" onclick="toggleModal(\'login\')" class="text-blue-600 font-bold">Masuk</a>';
+                modalTitle.innerText = "Selamat Datang Kembali";
             }
-            
-            modal.classList.toggle('opacity-0');
-            modal.classList.toggle('pointer-events-none');
-            document.body.classList.toggle('modal-active');
+        }
+
+        function closeModal() {
+            // Hide Modal Animation
+            modal.classList.remove('scale-100', 'opacity-100');
+            modal.classList.add('scale-95', 'opacity-0');
+
+            // Hide Backdrop Animation
+            backdrop.classList.add('opacity-0');
+
+            // Remove classes after animation finishes
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                backdrop.classList.add('hidden');
+            }, 300);
         }
     </script>
 </body>
