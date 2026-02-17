@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NodeEarn - Smart Earning</title>
+    <title>NodeEarn - Smart Earning Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -11,8 +11,9 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226, 232, 240, 0.8); }
         .btn-gradient { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); transition: all 0.3s ease; }
-        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3); }
+        .btn-gradient:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3); }
         .hidden-step { display: none; }
+        .otp-input:focus { border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
@@ -20,20 +21,22 @@
     <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
             <div class="flex items-center gap-2">
-                <div class="bg-blue-600 w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-lg"><i class="fas fa-cube"></i></div>
+                <div class="bg-blue-600 w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <i class="fas fa-cube"></i>
+                </div>
                 <span class="text-2xl font-bold tracking-tight">Node<span class="text-blue-600">Earn</span></span>
             </div>
             <div class="flex gap-4">
                 <button onclick="openModal('signin')" class="text-sm font-bold text-slate-600 hover:text-blue-600 transition">Masuk</button>
-                <button onclick="openModal('signup')" class="btn-gradient text-white px-6 py-2.5 rounded-full text-sm font-bold">Daftar</button>
+                <button onclick="openModal('signup')" class="btn-gradient text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md">Daftar</button>
             </div>
         </div>
     </nav>
 
     <header class="pt-48 pb-24 px-6 text-center">
-        <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">Kerja <span class="text-blue-600">Smart</span> di Era Digital.</h1>
-        <p class="text-lg text-slate-500 mb-8 max-w-xl mx-auto">Misi harian mudah dengan bayaran rupiah nyata. Tarik saldo kapanpun (Admin Rp 1.500).</p>
-        <button onclick="openModal('signup')" class="btn-gradient text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl">Daftar Sekarang — Gratis</button>
+        <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">Kerja <span class="text-blue-600">Smart</span>, Hasil Nyata.</h1>
+        <p class="text-lg text-slate-500 mb-8 max-w-xl mx-auto">Selesaikan misi harian sederhana dan tarik saldo rupiah langsung ke rekening Anda.</p>
+        <button onclick="openModal('signup')" class="btn-gradient text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl">Mulai Hasilkan Uang</button>
     </header>
 
     <div id="modalBackdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[99] hidden opacity-0 transition-opacity duration-300" onclick="closeModal()"></div>
@@ -41,31 +44,49 @@
     <div id="authModal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl z-[100] hidden opacity-0 scale-95 transition-all duration-300 p-8">
         
         <div class="flex justify-between items-center mb-6">
-            <h3 id="modalTitle" class="text-2xl font-extrabold text-slate-900">Masuk</h3>
-            <button onclick="closeModal()" class="text-slate-300 hover:text-slate-900"><i class="fas fa-times"></i></button>
+            <h3 id="modalTitle" class="text-2xl font-extrabold text-slate-900 tracking-tight">Masuk</h3>
+            <button onclick="closeModal()" class="text-slate-300 hover:text-slate-900 transition"><i class="fas fa-times text-xl"></i></button>
         </div>
 
         <div id="formSignIn" class="space-y-4">
             <input type="email" placeholder="Email" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
             <input type="password" placeholder="Password" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
             <button class="w-full btn-gradient text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-blue-500/20">Masuk Sekarang</button>
-            <p class="text-center text-sm text-slate-500 pt-4">Belum punya akun? <a href="javascript:void(0)" onclick="openModal('signup')" class="text-blue-600 font-bold">Daftar</a></p>
+            <p class="text-center text-sm text-slate-500 pt-4">Belum punya akun? <a href="javascript:void(0)" onclick="openModal('signup')" class="text-blue-600 font-bold">Daftar Gratis</a></p>
         </div>
 
-        <div id="formSignUp" class="hidden-step space-y-4">
+        <div id="formSignUp" class="hidden-step">
             <div id="signupStep1" class="space-y-4">
                 <div>
-                    <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Username (4-7 Huruf Kecil)</label>
-                    <input type="text" id="usernameInput" oninput="validateUsername(this)" placeholder="username" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
-                    <p id="userError" class="text-[10px] text-red-500 mt-1 ml-1 opacity-0">Min 4 & Max 7 karakter, tanpa spasi/kapital.</p>
+                    <label class="text-[10px] font-bold text-slate-400 uppercase ml-1 mb-1 block">Username (4-7 Huruf Kecil)</label>
+                    <input type="text" id="usernameInput" oninput="validateForm()" placeholder="username" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
                 </div>
-                <input type="email" placeholder="Email" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
-                <input type="password" placeholder="Password" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
-                <button onclick="goToOTP()" id="btnSignup" class="w-full btn-gradient text-white py-4 rounded-2xl font-bold text-lg shadow-lg">Kirim Kode OTP</button>
+
+                <input type="email" id="emailSignup" placeholder="Email" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+
+                <div>
+                    <label class="text-[10px] font-bold text-slate-400 uppercase ml-1 mb-1 block">Password Baru</label>
+                    <input type="password" id="passwordSignup" oninput="validateForm()" placeholder="Password Minimal 6-15" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                    
+                    <div class="grid grid-cols-2 gap-y-1 mt-3 ml-1">
+                        <p id="reqLen" class="text-[9px] text-slate-400 font-bold flex items-center"><i class="fas fa-circle mr-1 text-[6px]"></i> 6-15 Karakter</p>
+                        <p id="reqCap" class="text-[9px] text-slate-400 font-bold flex items-center"><i class="fas fa-circle mr-1 text-[6px]"></i> Huruf Kapital</p>
+                        <p id="reqNum" class="text-[9px] text-slate-400 font-bold flex items-center"><i class="fas fa-circle mr-1 text-[6px]"></i> Angka</p>
+                        <p id="reqUniq" class="text-[9px] text-slate-400 font-bold flex items-center"><i class="fas fa-circle mr-1 text-[6px]"></i> Simbol (@#$%!)</p>
+                    </div>
+                </div>
+
+                <button onclick="goToOTP()" id="btnSignup" disabled class="w-full btn-gradient text-white py-4 rounded-2xl font-bold text-lg shadow-lg opacity-50 cursor-not-allowed mt-2">Daftar & Kirim OTP</button>
             </div>
 
-            <div id="signupStep2" class="hidden-step text-center space-y-6">
-                <p class="text-sm text-slate-500">Masukkan 6-digit kode yang kami kirim ke email Anda.</p>
+            <div id="signupStep2" class="hidden-step space-y-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope-open-text text-2xl text-blue-600"></i>
+                    </div>
+                    <p class="text-sm text-slate-500">Cek kotak masuk email Anda dan masukkan 6 digit kode OTP:</p>
+                </div>
+                
                 <div class="flex justify-between gap-2">
                     <input type="text" maxlength="1" class="otp-box w-12 h-14 text-center text-xl font-bold bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
                     <input type="text" maxlength="1" class="otp-box w-12 h-14 text-center text-xl font-bold bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
@@ -74,18 +95,20 @@
                     <input type="text" maxlength="1" class="otp-box w-12 h-14 text-center text-xl font-bold bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
                     <input type="text" maxlength="1" class="otp-box w-12 h-14 text-center text-xl font-bold bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
-                <button onclick="alert('Pendaftaran Berhasil!')" class="w-full btn-gradient text-white py-4 rounded-2xl font-bold text-lg">Verifikasi & Selesai</button>
+
+                <button onclick="alert('Selamat! Pendaftaran NodeEarn Berhasil.')" class="w-full btn-gradient text-white py-4 rounded-2xl font-bold text-lg shadow-lg">Verifikasi Kode</button>
             </div>
-            <p id="footerText" class="text-center text-sm text-slate-500 pt-4">Sudah punya akun? <a href="javascript:void(0)" onclick="openModal('signin')" class="text-blue-600 font-bold">Masuk</a></p>
+
+            <p id="footerText" class="text-center text-sm text-slate-500 pt-6">Sudah punya akun? <a href="javascript:void(0)" onclick="openModal('signin')" class="text-blue-600 font-bold underline">Masuk</a></p>
         </div>
 
-        <div id="googleSection">
+        <div id="googleSection" class="mt-2">
             <div class="relative flex py-6 items-center">
                 <div class="flex-grow border-t border-slate-100"></div>
-                <span class="flex-shrink mx-4 text-slate-400 text-[10px] font-bold uppercase tracking-widest tracking-widest">Atau</span>
+                <span class="flex-shrink mx-4 text-slate-400 text-[10px] font-bold uppercase tracking-widest">Atau</span>
                 <div class="flex-grow border-t border-slate-100"></div>
             </div>
-            <button class="w-full flex items-center justify-center gap-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold py-4 rounded-2xl transition">
+            <button class="w-full flex items-center justify-center gap-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold py-4 rounded-2xl transition shadow-sm">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5">
                 <span>Lanjutkan dengan Google</span>
             </button>
@@ -95,10 +118,11 @@
     <script>
         const modal = document.getElementById('authModal');
         const backdrop = document.getElementById('modalBackdrop');
-        const signInForm = document.getElementById('formSignIn');
-        const signUpForm = document.getElementById('formSignUp');
+        const sInForm = document.getElementById('formSignIn');
+        const sUpForm = document.getElementById('formSignUp');
         const s1 = document.getElementById('signupStep1');
         const s2 = document.getElementById('signupStep2');
+        const googleSec = document.getElementById('googleSection');
 
         function openModal(mode) {
             backdrop.classList.remove('hidden');
@@ -109,44 +133,68 @@
             }, 10);
 
             if(mode === 'signin') {
-                document.getElementById('modalTitle').innerText = "Selamat Datang";
-                signInForm.classList.remove('hidden-step');
-                signUpForm.classList.add('hidden-step');
-                document.getElementById('googleSection').style.display = 'block';
+                document.getElementById('modalTitle').innerText = "Masuk Ke Akun";
+                sInForm.classList.remove('hidden-step');
+                sUpForm.classList.add('hidden-step');
+                googleSec.style.display = 'block';
             } else {
-                document.getElementById('modalTitle').innerText = "Buat Akun";
-                signInForm.classList.add('hidden-step');
-                signUpForm.classList.remove('hidden-step');
+                document.getElementById('modalTitle').innerText = "Daftar NodeEarn";
+                sInForm.classList.add('hidden-step');
+                sUpForm.classList.remove('hidden-step');
                 s1.classList.remove('hidden-step');
                 s2.classList.add('hidden-step');
+                googleSec.style.display = 'block';
                 document.getElementById('footerText').style.display = 'block';
-                document.getElementById('googleSection').style.display = 'block';
             }
         }
 
-        function validateUsername(input) {
-            // Force lowercase and remove spaces
-            input.value = input.value.toLowerCase().replace(/\s/g, '');
-            const error = document.getElementById('userError');
+        function validateForm() {
+            // 1. Validate Username
+            const userIn = document.getElementById('usernameInput');
+            userIn.value = userIn.value.toLowerCase().replace(/\s/g, '');
+            const isUserValid = userIn.value.length >= 4 && userIn.value.length <= 7;
+
+            // 2. Validate Password
+            const pass = document.getElementById('passwordSignup').value;
+            const isLen = pass.length >= 6 && pass.length <= 15;
+            const hasCap = /[A-Z]/.test(pass);
+            const hasNum = /[0-9]/.test(pass);
+            const hasUniq = /[^A-Za-z0-9]/.test(pass);
+
+            // Update UI
+            updateIndicator('reqLen', isLen);
+            updateIndicator('reqCap', hasCap);
+            updateIndicator('reqNum', hasNum);
+            updateIndicator('reqUniq', hasUniq);
+
+            // Enable Button
             const btn = document.getElementById('btnSignup');
-            
-            if(input.value.length >= 4 && input.value.length <= 7) {
-                error.classList.add('opacity-0');
+            if(isUserValid && isLen && hasCap && hasNum && hasUniq) {
                 btn.disabled = false;
-                btn.style.opacity = '1';
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
             } else {
-                error.classList.remove('opacity-0');
                 btn.disabled = true;
-                btn.style.opacity = '0.5';
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function updateIndicator(id, isValid) {
+            const el = document.getElementById(id);
+            if(isValid) {
+                el.classList.replace('text-slate-400', 'text-green-500');
+                el.querySelector('i').className = 'fas fa-check-circle mr-1 text-[8px]';
+            } else {
+                el.classList.replace('text-green-500', 'text-slate-400');
+                el.querySelector('i').className = 'fas fa-circle mr-1 text-[6px]';
             }
         }
 
         function goToOTP() {
             s1.classList.add('hidden-step');
             s2.classList.remove('hidden-step');
-            document.getElementById('modalTitle').innerText = "Verifikasi OTP";
+            googleSec.style.display = 'none';
             document.getElementById('footerText').style.display = 'none';
-            document.getElementById('googleSection').style.display = 'none';
+            document.getElementById('modalTitle').innerText = "Verifikasi Email";
         }
 
         function closeModal() {
@@ -158,11 +206,12 @@
             }, 300);
         }
 
-        // Auto focus OTP
+        // Auto focus OTP logic
         const otps = document.querySelectorAll('.otp-box');
         otps.forEach((box, i) => {
             box.onkeyup = (e) => {
-                if(box.value && i < 5) otps[i+1].focus();
+                if(box.value.length === 1 && i < 5) otps[i+1].focus();
+                if(e.key === "Backspace" && i > 0) otps[i-1].focus();
             }
         });
     </script>
