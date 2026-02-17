@@ -36,7 +36,8 @@
         .animate-glow { animation: pulse-glow 3s infinite; }
 
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .ticker-content { display: inline-block; animation: marquee 40s linear infinite; }
+        /* UPDATE: Ticker content now uses flex for better alignment of icons */
+        .ticker-content { display: flex; animation: marquee 40s linear infinite; width: max-content; }
 
         /* UI Elements */
         .btn-gradient {
@@ -44,9 +45,6 @@
             transition: all 0.3s ease;
         }
         .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4); }
-
-        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
 
         /* Modal Styles */
         .modal { opacity: 0; pointer-events: none; transform: scale(0.95); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -77,7 +75,7 @@
 
             <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
                 <a href="#misi" class="hover:text-blue-600 transition">Daftar Misi</a>
-                <a href="#testimoni" class="hover:text-blue-600 transition">Testimoni</a>
+                <a href="#testimoni" class="hover:text-blue-600 transition">Keunggulan</a>
             </div>
 
             <div class="flex items-center gap-3">
@@ -161,15 +159,36 @@
         </div>
     </section>
 
-    <div class="bg-slate-900 py-3 relative z-20 overflow-hidden border-y border-slate-800">
-        <div class="ticker-content whitespace-nowrap">
-            <span class="text-xs font-bold text-slate-400 mx-8"><span class="text-green-400">●</span> Andi (JKT) cair Rp 25rb</span>
-            <span class="text-xs font-bold text-slate-400 mx-8"><span class="text-blue-400">●</span> Siti (BDG) selesai Survey</span>
-            <span class="text-xs font-bold text-slate-400 mx-8"><span class="text-green-400">●</span> Reza (SBY) cair Rp 100rb</span>
-            <span class="text-xs font-bold text-slate-400 mx-8"><span class="text-yellow-400">●</span> Iklan Baru Tersedia!</span>
-            <span class="text-xs font-bold text-slate-400 mx-8"><span class="text-green-400">●</span> Budi (MDN) selesai Captcha</span>
-             <span class="text-xs font-bold text-slate-400 mx-8"><span class="text-green-400">●</span> Andi (JKT) cair Rp 25rb</span>
-            <span class="text-xs font-bold text-slate-400 mx-8"><span class="text-blue-400">●</span> Siti (BDG) selesai Survey</span>
+    <div class="relative z-20 bg-slate-900/90 backdrop-blur-md border-y border-slate-800 py-4 overflow-hidden">
+        <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none"></div>
+
+        <div class="ticker-content flex items-center gap-16 px-6">
+            <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-shield-alt text-blue-400 text-lg"></i> SSL Secure Payment
+            </div>
+            <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-wallet text-blue-400 text-lg"></i> Instant DANA/OVO
+            </div>
+            <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-headset text-blue-400 text-lg"></i> 24/7 Live Support
+            </div>
+             <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-bolt text-blue-400 text-lg"></i> Fast Withdrawal
+            </div>
+            <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-lock text-blue-400 text-lg"></i> Encrypted Data
+            </div>
+            
+            <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-shield-alt text-blue-400 text-lg"></i> SSL Secure Payment
+            </div>
+            <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-wallet text-blue-400 text-lg"></i> Instant DANA/OVO
+            </div>
+             <div class="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-wider text-xs whitespace-nowrap">
+                <i class="fas fa-headset text-blue-400 text-lg"></i> 24/7 Live Support
+            </div>
         </div>
     </div>
 
