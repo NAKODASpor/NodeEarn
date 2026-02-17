@@ -3,77 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Earn App - Dashboard</title>
+    <title>EarnApp - Mulai Hasilkan Uang dari HP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
-<body class="bg-[#0f172a] text-white font-sans">
+<body class="bg-[#0f172a] text-white">
 
-    <nav class="p-5 flex justify-between items-center bg-[#1e293b] border-b border-gray-700">
-        <h1 class="text-xl font-bold text-orange-400"><i class="fas fa-wallet mr-2"></i>EarnApp</h1>
-        <div class="bg-gray-700 px-3 py-1 rounded-full text-sm">
-            <i class="fas fa-user-circle mr-1"></i> User_123
+    <nav class="fixed w-full z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold gradient-text">EarnApp</h1>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#fitur" class="hover:text-orange-400">Fitur</a>
+                <a href="#cara-kerja" class="hover:text-orange-400">Cara Kerja</a>
+                <a href="#testimoni" class="hover:text-orange-400">Testimoni</a>
+            </div>
+            <a href="https://github.com/login" class="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-full text-sm font-bold transition-all">Daftar Sekarang</a>
         </div>
     </nav>
 
-    <main class="p-6 max-w-md mx-auto">
-        
-        <div class="bg-gradient-to-br from-orange-500 to-yellow-500 p-6 rounded-3xl shadow-lg mb-8 text-gray-900">
-            <p class="text-sm font-semibold opacity-80 uppercase tracking-wider">Total Saldo Anda</p>
-            <h2 class="text-4xl font-black mt-1" id="balanceText">Rp 500.000</h2>
-            <p class="text-xs mt-4 bg-black/10 w-fit px-2 py-1 rounded font-bold">+ Rp 12.500 hari ini</p>
+    <header class="pt-32 pb-20 px-6 text-center">
+        <div class="max-w-3xl mx-auto">
+            <span class="bg-orange-500/10 text-orange-500 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">Aplikasi Penghasil Uang #1</span>
+            <h2 class="text-5xl md:text-6xl font-black mt-6 leading-tight">Ubah Waktu Luang Menjadi <span class="gradient-text">Saldo Nyata</span></h2>
+            <p class="text-gray-400 mt-6 text-lg leading-relaxed">Selesaikan misi harian, tonton video, dan undang teman untuk mengumpulkan poin yang bisa dicairkan ke DANA, OVO, atau GoPay secara instan.</p>
+            <div class="mt-10 flex flex-col md:flex-row justify-center gap-4">
+                <button class="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-500/20 transition-all">Mulai Hasilkan Uang</button>
+                <button class="bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-2xl font-bold text-lg border border-gray-700 transition-all text-white">Pelajari Lebih Lanjut</button>
+            </div>
         </div>
+    </header>
 
-        <div class="grid grid-cols-2 gap-4 mb-8">
-            <button onclick="claimReward()" class="bg-[#1e293b] p-4 rounded-2xl border border-gray-700 hover:border-orange-500 transition-all text-center">
-                <i class="fas fa-gift text-2xl text-orange-400 mb-2"></i>
-                <p class="text-xs font-medium">Daily Claim</p>
-            </button>
-            <button class="bg-[#1e293b] p-4 rounded-2xl border border-gray-700 hover:border-orange-500 transition-all text-center">
-                <i class="fas fa-tasks text-2xl text-blue-400 mb-2"></i>
-                <p class="text-xs font-medium">Misi Baru</p>
-            </button>
+    <section class="bg-[#1e293b] py-12">
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div><h3 class="text-3xl font-bold text-orange-400">1M+</h3><p class="text-xs text-gray-400 mt-1 uppercase">Unduhan</p></div>
+            <div><h3 class="text-3xl font-bold text-orange-400">Rp 10M+</h3><p class="text-xs text-gray-400 mt-1 uppercase">Total Cair</p></div>
+            <div><h3 class="text-3xl font-bold text-orange-400">4.8/5</h3><p class="text-xs text-gray-400 mt-1 uppercase">Rating Playstore</p></div>
+            <div><h3 class="text-3xl font-bold text-orange-400">24/7</h3><p class="text-xs text-gray-400 mt-1 uppercase">Dukungan Admin</p></div>
         </div>
+    </section>
 
-        <div class="bg-[#1e293b] rounded-3xl p-5 border border-gray-700">
-            <h3 class="font-bold mb-4 flex justify-between items-center">
-                Riwayat Terakhir
-                <span class="text-xs text-gray-400 font-normal underline cursor-pointer">Lihat Semua</span>
-            </h3>
-            
-            <div class="space-y-4">
-                <div class="flex items-center justify-between border-b border-gray-700 pb-3">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-green-500/20 p-2 rounded-lg text-green-500"><i class="fas fa-arrow-down text-sm"></i></div>
-                        <div>
-                            <p class="text-sm font-bold">Bonus Login</p>
-                            <p class="text-[10px] text-gray-400">17 Feb 2026 - 19:30</p>
-                        </div>
+    <section id="fitur" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold">Kenapa Memilih EarnApp?</h2>
+                <div class="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-800/50 p-8 rounded-3xl border border-gray-700 hover:border-orange-500 transition-all">
+                    <div class="bg-orange-500/20 w-12 h-12 flex items-center justify-center rounded-xl text-orange-400 mb-6 text-xl">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <p class="text-green-400 font-bold text-sm">+ Rp 2.500</p>
+                    <h4 class="text-xl font-bold mb-3">Pencairan Kilat</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Tarik saldo kamu kapan saja. Proses pencairan hanya memakan waktu hitungan menit langsung ke dompet digitalmu.</p>
                 </div>
-
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-blue-500/20 p-2 rounded-lg text-blue-500"><i class="fas fa-check text-sm"></i></div>
-                        <div>
-                            <p class="text-sm font-bold">Misi Nonton Video</p>
-                            <p class="text-[10px] text-gray-400">17 Feb 2026 - 18:45</p>
-                        </div>
+                <div class="bg-gray-800/50 p-8 rounded-3xl border border-gray-700 hover:border-blue-500 transition-all">
+                    <div class="bg-blue-500/20 w-12 h-12 flex items-center justify-center rounded-xl text-blue-400 mb-6 text-xl">
+                        <i class="fas fa-tasks"></i>
                     </div>
-                    <p class="text-green-400 font-bold text-sm">+ Rp 10.000</p>
+                    <h4 class="text-xl font-bold mb-3">Misi Bervariasi</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Dari mengisi survei singkat hingga bermain game seru, tersedia ratusan misi baru setiap harinya agar kamu tidak bosan.</p>
+                </div>
+                <div class="bg-gray-800/50 p-8 rounded-3xl border border-gray-700 hover:border-green-500 transition-all">
+                    <div class="bg-green-500/20 w-12 h-12 flex items-center justify-center rounded-xl text-green-400 mb-6 text-xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Sangat Aman</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Data pribadi kamu terenkripsi dengan aman. Kami berkomitmen menjaga privasi setiap pengguna tanpa terkecuali.</p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <script>
-        let balance = 500000;
-        function claimReward() {
-            balance += 5000;
-            document.getElementById('balanceText').innerText = "Rp " + balance.toLocaleString('id-ID');
-            alert('Selamat! Bonus Rp 5.000 telah masuk ke saldo kamu.');
-        }
-    </script>
+    <footer class="bg-gray-950 py-12 px-6 border-t border-gray-800 text-center">
+        <h1 class="text-2xl font-bold gradient-text mb-4">EarnApp</h1>
+        <p class="text-gray-500 text-sm italic">© 2026 EarnApp Inc. Tidak perlu Termux, cukup semangat!</p>
+    </footer>
+
 </body>
 </html>
