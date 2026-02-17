@@ -3,124 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NodeEarn - Solusi Penghasilan Digital Modern</title>
+    <title>NodeEarn - Solusi Penghasilan Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
-        .modal { transition: opacity 0.25s ease; flex-direction: column; }
+        body { font-family: 'Inter', sans-serif; }
+        .btn-primary { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); transition: all 0.3s ease; }
+        .modal { transition: opacity 0.25s ease; }
         body.modal-active { overflow: hidden; }
     </style>
 </head>
 <body class="bg-[#f8fafc] text-slate-900">
 
-    <nav class="fixed w-full z-50 glass-nav border-b border-slate-200">
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <div class="bg-blue-600 p-1.5 rounded-lg text-white">
-                    <i class="fas fa-network-wired text-lg"></i>
-                </div>
-                <h1 class="text-2xl font-extrabold tracking-tight text-slate-900">Node<span class="text-blue-600">Earn</span></h1>
+                <div class="bg-blue-600 p-1.5 rounded-lg text-white"><i class="fas fa-network-wired"></i></div>
+                <h1 class="text-2xl font-extrabold tracking-tight">Node<span class="text-blue-600">Earn</span></h1>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
-                <a href="#fitur" class="hover:text-blue-600 transition">Fitur</a>
-                <a href="#cara" class="hover:text-blue-600 transition">Cara Kerja</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="toggleModal('login')" class="text-sm font-bold text-slate-600 hover:text-blue-600">Masuk</button>
-                <button onclick="toggleModal('signup')" class="btn-primary text-white px-6 py-2.5 rounded-full text-sm font-bold">Mulai Gratis</button>
-            </div>
+            <button onclick="toggleModal('signup')" class="btn-primary text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-500/20">Mulai Gratis</button>
         </div>
     </nav>
 
-    <header class="pt-48 pb-24 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <span class="bg-blue-50 text-blue-600 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest border border-blue-100">
-                Penghasilan Digital Terpercaya
-            </span>
-            <h2 class="text-5xl md:text-7xl font-extrabold mt-8 leading-[1.1] text-slate-900 mx-auto max-w-4xl">
-                Hasilkan <span class="text-blue-600">Pendapatan</span> Langsung Dari Browser Anda.
-            </h2>
-            <p class="text-slate-500 mt-8 text-lg leading-relaxed max-w-2xl mx-auto">
-                Tanpa perlu download aplikasi. NodeEarn bekerja sepenuhnya di web untuk membantu Anda mengumpulkan saldo digital secara aman dan instan.
-            </p>
-            <div class="mt-12 flex justify-center space-x-4">
-                <button onclick="toggleModal('signup')" class="btn-primary text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl">Daftar Sekarang — Gratis</button>
-            </div>
-        </div>
+    <header class="pt-48 pb-24 px-6 text-center">
+        <h2 class="text-5xl md:text-7xl font-extrabold text-slate-900 mx-auto max-w-4xl leading-tight">
+            Kerja <span class="text-blue-600">Smart</span>, Bukan Hard.
+        </h2>
+        <p class="text-slate-500 mt-6 text-lg max-w-2xl mx-auto">Platform penghasil saldo digital berbasis web tercepat tanpa instalasi aplikasi.</p>
+        <button onclick="toggleModal('signup')" class="mt-10 btn-primary text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl">Gabung Sekarang</button>
     </header>
 
     <div id="authModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-[100]">
-        <div class="modal-overlay absolute w-full h-full bg-slate-900 opacity-50" onclick="toggleModal()"></div>
+        <div class="absolute w-full h-full bg-slate-900/60 backdrop-blur-sm" onclick="toggleModal()"></div>
         
-        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-[2rem] shadow-2xl z-[101] overflow-hidden">
-            <div class="p-8">
-                <div class="flex justify-between items-center pb-6">
-                    <p class="text-2xl font-black text-slate-900" id="modalTitle">Masuk Ke NodeEarn</p>
-                    <div class="modal-close cursor-pointer z-50" onclick="toggleModal()">
-                        <i class="fas fa-times text-slate-400 hover:text-slate-900 transition"></i>
-                    </div>
+        <div class="bg-white w-11/12 md:max-w-md mx-auto rounded-[2.5rem] shadow-2xl z-[101] overflow-hidden relative">
+            <div class="p-10">
+                <div class="flex justify-between items-center mb-8">
+                    <p class="text-2xl font-black text-slate-900" id="modalTitle">Daftar Akun</p>
+                    <i class="fas fa-times text-slate-300 hover:text-slate-900 cursor-pointer transition" onclick="toggleModal()"></i>
                 </div>
 
-                <button class="w-full flex items-center justify-center space-x-3 border border-slate-200 py-3 rounded-xl hover:bg-slate-50 transition mb-6 font-semibold text-slate-600">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5" alt="Google">
-                    <span>Lanjutkan dengan Google</span>
-                </button>
-
-                <div class="relative flex py-2 items-center mb-6">
-                    <div class="flex-grow border-t border-slate-100"></div>
-                    <span class="flex-shrink mx-4 text-slate-400 text-xs font-bold uppercase">Atau Email</span>
-                    <div class="flex-grow border-t border-slate-100"></div>
-                </div>
-
-                <form class="space-y-4">
-                    <div>
-                        <label class="text-xs font-bold text-slate-400 uppercase">Alamat Email</label>
-                        <input type="email" placeholder="nama@email.com" class="w-full mt-1 p-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="text-xs font-bold text-slate-400 uppercase">Password</label>
-                        <input type="password" placeholder="••••••••" class="w-full mt-1 p-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:border-blue-500">
-                    </div>
-                    <button type="button" class="btn-primary w-full text-white py-4 rounded-xl font-bold mt-2 shadow-lg">Lanjutkan</button>
+                <form id="authForm" class="space-y-4">
+                    <input type="email" id="email" placeholder="Email Anda" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                    <input type="password" id="password" placeholder="Password" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                    <button type="submit" class="btn-primary w-full text-white py-4 rounded-2xl font-bold text-lg shadow-lg">Lanjutkan</button>
                 </form>
+
+                <div class="relative flex py-8 items-center">
+                    <div class="flex-grow border-t border-slate-100"></div>
+                    <span class="flex-shrink mx-4 text-slate-400 text-[10px] font-bold uppercase tracking-widest">Atau Gunakan</span>
+                    <div class="flex-grow border-t border-slate-100"></div>
+                </div>
+
+                <button id="googleBtn" class="w-full flex items-center justify-center space-x-3 border border-slate-200 py-4 rounded-2xl hover:bg-slate-50 transition font-bold text-slate-700">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-6 h-6" alt="Google">
+                    <span>Login dengan Google</span>
+                </button>
                 
                 <p class="mt-8 text-center text-sm text-slate-500" id="modalFooter">
-                    Belum punya akun? <a href="javascript:void(0)" onclick="toggleModal('signup')" class="text-blue-600 font-bold">Daftar</a>
+                    Sudah punya akun? <a href="#" onclick="toggleModal('login')" class="text-blue-600 font-bold">Masuk</a>
                 </p>
             </div>
         </div>
     </div>
 
-    <footer class="bg-white border-t border-slate-200 py-12 text-center">
-        <p class="text-slate-400 text-sm font-medium italic">© 2026 NodeEarn. Tidak perlu instal aplikasi, cukup buka dari browser.</p>
-    </footer>
-
+    <script type="module" src="auth.js"></script>
     <script>
-        function toggleModal(mode = null) {
-            const body = document.querySelector('body');
+        function toggleModal(mode = 'signup') {
             const modal = document.getElementById('authModal');
             const title = document.getElementById('modalTitle');
             const footer = document.getElementById('modalFooter');
-
-            if (mode === 'login') {
-                title.innerText = "Selamat Datang Kembali";
-                footer.innerHTML = 'Belum punya akun? <a href="javascript:void(0)" onclick="toggleModal(\'signup\')" class="text-blue-600 font-bold">Daftar</a>';
-            } else if (mode === 'signup') {
-                title.innerText = "Buat Akun Baru";
-                footer.innerHTML = 'Sudah punya akun? <a href="javascript:void(0)" onclick="toggleModal(\'login\')" class="text-blue-600 font-bold">Masuk</a>';
+            
+            if(mode === 'login') {
+                title.innerText = "Masuk Kembali";
+                footer.innerHTML = 'Belum punya akun? <a href="#" onclick="toggleModal(\'signup\')" class="text-blue-600 font-bold">Daftar</a>';
+            } else {
+                title.innerText = "Daftar Akun";
+                footer.innerHTML = 'Sudah punya akun? <a href="#" onclick="toggleModal(\'login\')" class="text-blue-600 font-bold">Masuk</a>';
             }
-
+            
             modal.classList.toggle('opacity-0');
             modal.classList.toggle('pointer-events-none');
-            body.classList.toggle('modal-active');
+            document.body.classList.toggle('modal-active');
         }
     </script>
 </body>
