@@ -3,88 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EarnApp - Mulai Hasilkan Uang dari HP</title>
+    <title>NodeEarn - Solusi Penghasilan Digital Modern</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        .gradient-text {
-            background: linear-gradient(to right, #f97316, #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
         }
     </style>
 </head>
-<body class="bg-[#0f172a] text-white">
+<body class="bg-[#f8fafc] text-slate-900">
 
-    <nav class="fixed w-full z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold gradient-text">EarnApp</h1>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#fitur" class="hover:text-orange-400">Fitur</a>
-                <a href="#cara-kerja" class="hover:text-orange-400">Cara Kerja</a>
-                <a href="#testimoni" class="hover:text-orange-400">Testimoni</a>
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg text-white">
+                    <i class="fas fa-network-wired text-lg"></i>
+                </div>
+                <h1 class="text-2xl font-extrabold tracking-tight text-slate-900">Node<span class="text-blue-600">Earn</span></h1>
             </div>
-            <a href="https://github.com/login" class="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-full text-sm font-bold transition-all">Daftar Sekarang</a>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#fitur" class="hover:text-blue-600 transition">Fitur</a>
+                <a href="#cara" class="hover:text-blue-600 transition">Cara Kerja</a>
+                <a href="#testimoni" class="hover:text-blue-600 transition">Testimoni</a>
+            </div>
+            <button class="btn-primary text-white px-6 py-2.5 rounded-full text-sm font-bold">Mulai Gratis</button>
         </div>
     </nav>
 
-    <header class="pt-32 pb-20 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
-            <span class="bg-orange-500/10 text-orange-500 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">Aplikasi Penghasil Uang #1</span>
-            <h2 class="text-5xl md:text-6xl font-black mt-6 leading-tight">Ubah Waktu Luang Menjadi <span class="gradient-text">Saldo Nyata</span></h2>
-            <p class="text-gray-400 mt-6 text-lg leading-relaxed">Selesaikan misi harian, tonton video, dan undang teman untuk mengumpulkan poin yang bisa dicairkan ke DANA, OVO, atau GoPay secara instan.</p>
-            <div class="mt-10 flex flex-col md:flex-row justify-center gap-4">
-                <button class="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-500/20 transition-all">Mulai Hasilkan Uang</button>
-                <button class="bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-2xl font-bold text-lg border border-gray-700 transition-all text-white">Pelajari Lebih Lanjut</button>
+    <header class="pt-40 pb-24 px-6 hero-gradient">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="bg-blue-50 text-blue-600 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest border border-blue-100">
+                    Penghasilan Digital Terpercaya
+                </span>
+                <h2 class="text-5xl md:text-7xl font-extrabold mt-6 leading-[1.1] text-slate-900">
+                    Hasilkan <span class="text-blue-600">Cuan</span> Dari Mana Saja.
+                </h2>
+                <p class="text-slate-500 mt-8 text-lg leading-relaxed max-w-lg">
+                    Platform revolusioner yang menghubungkan waktu luangmu dengan penghasilan nyata. NodeEarn mempermudah proses pencairan saldo langsung ke e-wallet favoritmu.
+                </p>
+                <div class="mt-10 flex items-center space-x-4">
+                    <button class="btn-primary text-white px-8 py-4 rounded-2xl font-bold text-lg">Download App</button>
+                    <button class="bg-white border border-slate-200 text-slate-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition">Lihat Panduan</button>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="w-72 h-[500px] bg-white rounded-[3rem] border-[8px] border-slate-900 shadow-2xl relative overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-8">
+                            <i class="fas fa-bars text-slate-400"></i>
+                            <div class="w-8 h-8 rounded-full bg-slate-200"></div>
+                        </div>
+                        <p class="text-xs text-slate-400 font-bold uppercase">Saldo Anda</p>
+                        <h4 class="text-2xl font-black text-slate-900">Rp 2.450.000</h4>
+                        <div class="mt-8 space-y-4">
+                            <div class="h-12 bg-slate-50 rounded-xl border border-slate-100"></div>
+                            <div class="h-12 bg-slate-50 rounded-xl border border-slate-100"></div>
+                            <div class="h-12 bg-blue-600 rounded-xl"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-10 -left-10 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 hidden md:block">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-green-100 p-2 rounded-full text-green-600"><i class="fas fa-check"></i></div>
+                        <div>
+                            <p class="text-xs font-bold">Pencairan Berhasil</p>
+                            <p class="text-[10px] text-slate-400">Baru saja • Rp 50.000</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="bg-[#1e293b] py-12">
-        <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div><h3 class="text-3xl font-bold text-orange-400">1M+</h3><p class="text-xs text-gray-400 mt-1 uppercase">Unduhan</p></div>
-            <div><h3 class="text-3xl font-bold text-orange-400">Rp 10M+</h3><p class="text-xs text-gray-400 mt-1 uppercase">Total Cair</p></div>
-            <div><h3 class="text-3xl font-bold text-orange-400">4.8/5</h3><p class="text-xs text-gray-400 mt-1 uppercase">Rating Playstore</p></div>
-            <div><h3 class="text-3xl font-bold text-orange-400">24/7</h3><p class="text-xs text-gray-400 mt-1 uppercase">Dukungan Admin</p></div>
-        </div>
-    </section>
-
-    <section id="fitur" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold">Kenapa Memilih EarnApp?</h2>
-                <div class="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div class="bg-white border border-slate-200 rounded-[2.5rem] p-10 grid grid-cols-2 md:grid-cols-4 gap-8 shadow-sm">
+            <div class="text-center">
+                <p class="text-slate-400 text-sm font-medium mb-1 uppercase tracking-tighter">Pengguna Aktif</p>
+                <h3 class="text-3xl font-black text-slate-900">2M+</h3>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-800/50 p-8 rounded-3xl border border-gray-700 hover:border-orange-500 transition-all">
-                    <div class="bg-orange-500/20 w-12 h-12 flex items-center justify-center rounded-xl text-orange-400 mb-6 text-xl">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3">Pencairan Kilat</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Tarik saldo kamu kapan saja. Proses pencairan hanya memakan waktu hitungan menit langsung ke dompet digitalmu.</p>
-                </div>
-                <div class="bg-gray-800/50 p-8 rounded-3xl border border-gray-700 hover:border-blue-500 transition-all">
-                    <div class="bg-blue-500/20 w-12 h-12 flex items-center justify-center rounded-xl text-blue-400 mb-6 text-xl">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3">Misi Bervariasi</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Dari mengisi survei singkat hingga bermain game seru, tersedia ratusan misi baru setiap harinya agar kamu tidak bosan.</p>
-                </div>
-                <div class="bg-gray-800/50 p-8 rounded-3xl border border-gray-700 hover:border-green-500 transition-all">
-                    <div class="bg-green-500/20 w-12 h-12 flex items-center justify-center rounded-xl text-green-400 mb-6 text-xl">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3">Sangat Aman</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Data pribadi kamu terenkripsi dengan aman. Kami berkomitmen menjaga privasi setiap pengguna tanpa terkecuali.</p>
-                </div>
+            <div class="text-center">
+                <p class="text-slate-400 text-sm font-medium mb-1 uppercase tracking-tighter">Total Terbayar</p>
+                <h3 class="text-3xl font-black text-slate-900">Rp 50M+</h3>
+            </div>
+            <div class="text-center">
+                <p class="text-slate-400 text-sm font-medium mb-1 uppercase tracking-tighter">App Rating</p>
+                <h3 class="text-3xl font-black text-slate-900">4.7/5</h3>
+            </div>
+            <div class="text-center">
+                <p class="text-slate-400 text-sm font-medium mb-1 uppercase tracking-tighter">Misi Harian</p>
+                <h3 class="text-3xl font-black text-slate-900">100+</h3>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-950 py-12 px-6 border-t border-gray-800 text-center">
-        <h1 class="text-2xl font-bold gradient-text mb-4">EarnApp</h1>
-        <p class="text-gray-500 text-sm italic">© 2026 EarnApp Inc. Tidak perlu Termux, cukup semangat!</p>
+    <section id="fitur" class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-center text-3xl font-black text-slate-900 mb-16">Mengapa NodeEarn Pilihan Terbaik?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 hover:shadow-xl hover:border-blue-200 transition">
+                <div class="bg-blue-100 w-14 h-14 flex items-center justify-center rounded-2xl text-blue-600 mb-6">
+                    <i class="fas fa-wallet text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">Penghasilan Fleksibel</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Pilih misi yang kamu suka kapan saja dan di mana saja. Kendali penuh ada di tanganmu.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 hover:shadow-xl hover:border-blue-200 transition">
+                <div class="bg-green-100 w-14 h-14 flex items-center justify-center rounded-2xl text-green-600 mb-6">
+                    <i class="fas fa-chart-line text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">Pantau Real-time</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Lihat setiap poin dan rupiah yang masuk secara instan melalui dashboard yang intuitif.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 hover:shadow-xl hover:border-blue-200 transition">
+                <div class="bg-orange-100 w-14 h-14 flex items-center justify-center rounded-2xl text-orange-600 mb-6">
+                    <i class="fas fa-exchange-alt text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">Pencairan Instan</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Tarik saldo ke DANA, OVO, atau GoPay tanpa menunggu lama. Proses otomatis 24/7.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-slate-200 py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-2 mb-6">
+                <div class="bg-blue-600 p-1.5 rounded-lg text-white">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h1 class="text-2xl font-black text-slate-900">NodeEarn</h1>
+            </div>
+            <p class="text-slate-400 text-sm">© 2026 NodeEarn Inc. Transformasi Digital Finansialmu.</p>
+        </div>
     </footer>
 
 </body>
